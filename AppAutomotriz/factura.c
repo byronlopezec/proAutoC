@@ -13,7 +13,7 @@ void moduloFacturacion() {
 
 }
 
-float calcularPrecioFinalDetalles(struct Detalle listaDetalles[], int contadorDetalle) {
+float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle) {
 
     float totalPrecioAPagar = 0.0;
 

@@ -8,20 +8,20 @@
 #ifndef COMPRA_H
 #define COMPRA_H
 
-struct Producto {
+typedef struct {
     int idProducto;
     char *nombre;
     float precio;
-};
+} Producto;
 
-struct Detalle {
+typedef struct {
     int idDetalle;
-    struct Producto producto;
+    Producto producto;
     int cantidad;
     float precioTotal;
-};
+} Detalle;
 
-extern struct Detalle listaDetalles[20];
+extern Detalle listaDetalles[20];
 extern int contadorDetalle;
 
 
@@ -30,8 +30,8 @@ void compraAuto();
 void compraRepuestosServicios();
 void finalizarCompra();
 void imprimirFactura();
-struct Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios);
-void imprimirDetalle(struct Detalle details[], int sizeDetails);
+Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios);
+void imprimirDetalle(Detalle details[], int sizeDetails);
 
 #endif /* COMPRA_H */
 

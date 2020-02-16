@@ -34,7 +34,7 @@ char * menuRepuestosYServicios[] = {
 };
 
 // Constantes Lista de Repuestos y Servicios de Taller
-const struct Producto listaProductos[9] = {
+const Producto listaProductos[9] = {
     {1, "Filtros", 5.00},
     {2, "Suspension", 69.00},
     {3, "Sistema de encendido", 350.00},
@@ -47,7 +47,7 @@ const struct Producto listaProductos[9] = {
 };
 
 int contadorDetalle = 0;
-struct Detalle listaDetalles[20] = {0};
+Detalle listaDetalles[20] = {0};
 
 int contadorFactura = 0;
 Factura listaFacturas[100] = {0};
@@ -98,7 +98,7 @@ void moduloCompra() {
 void compraAuto() {
 
     Auto autoSeleccionado = {0};
-    struct Detalle auxDetalle = {0};
+    Detalle auxDetalle = {0};
     int registrarDetalle = -1;
     int opcionId_auto;
     int salirCompraAuto = NO;
@@ -136,7 +136,7 @@ void compraAuto() {
         auxDetalle.cantidad = 1;
         auxDetalle.precioTotal = auxDetalle.cantidad * autoSeleccionado.precio;
 
-        struct Detalle auxListDetails[1] = {auxDetalle};
+        Detalle auxListDetails[1] = {auxDetalle};
         imprimirDetalle(auxListDetails, 1);
 
         printf("\nComprar Auto? (1 [SI],0 [Salir y Cancelar], \n[Precione Cualquier tecla para seguir modificando]): ");
@@ -164,7 +164,7 @@ void compraAuto() {
 
 }
 
-void imprimirDetalle(struct Detalle details[], int sizeDetails) {
+void imprimirDetalle( Detalle details[], int sizeDetails) {
     puts(" \t\t\t\t*** Detalles *** ");
     puts("_______________________________________________________________________________");
     printf("| %4s \t |%15s \t | %4s  | %8s \t | %8s\n", "ID_DETAIL", "NOMBRE", "CANT", "PRECIO_U", "SUB_TOTAL");
@@ -178,14 +178,14 @@ void imprimirDetalle(struct Detalle details[], int sizeDetails) {
 
 void compraRepuestosServicios() {
 
-    struct Detalle listaDetalles[10] = {0}; // inicializando a null;
+    Detalle listaDetalles[10] = {0}; // inicializando a null;
     int opcionMenuRepuestosServicios = -1;
     do {
 
         system("clear");
         puts("\t\t\t ** Comprar Repuestos y Servicios **");
         opcionMenuRepuestosServicios = seleccionarOpcionMenu(menuRepuestosYServicios, 10);
-        struct Detalle auxDetalle = {0};
+        Detalle auxDetalle = {0};
 
         if (opcionMenuRepuestosServicios < 1 || 9 < opcionMenuRepuestosServicios) continue;
 
@@ -196,11 +196,11 @@ void compraRepuestosServicios() {
     } while (opcionMenuRepuestosServicios != 10);
 }
 
-struct Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios) {
+Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios) {
 
     int auxCantidad = -1;
-    struct Producto temProducto = listaProductos[opcionMenuRepuestosServicios - 1];
-    struct Detalle auxDetalle = {0};
+    Producto temProducto = listaProductos[opcionMenuRepuestosServicios - 1];
+    Detalle auxDetalle = {0};
 
     do {
 
@@ -289,7 +289,9 @@ void finalizarCompra() {
             auxFactura.precioFinalPagar = calcularPrecioFinalDetalles(listaDetalles, contadorDetalle);
             strlcpy(auxFactura.fecha, getDate(), 20);
             listaFacturas[contadorFactura++] = auxFactura;
+/*
             archivarFacturas(listaFacturas, contadorFactura);
+*/
 
             // -- Limpiar Detalles
             memset(listaDetalles, 0, sizeof ( listaDetalles));

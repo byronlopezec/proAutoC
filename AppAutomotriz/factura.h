@@ -14,7 +14,7 @@ typedef struct {
     int sizeDetalles;
     char fecha[20];
     float precioFinalPagar;
-    struct Detalle listaDetalles[20];
+    Detalle listaDetalles[20];
 } Factura;
 
 extern int contadorFactura;
@@ -22,7 +22,7 @@ extern Factura listaFacturas[100];
 
 
 void moduloFacturacion();
-float calcularPrecioFinalDetalles(struct Detalle listaDetalles[], int contadorDetalle);
+float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle);
 
 //void archivarFacturas(Factura lista[100], int sizeFacturas);
 //void cargarFacturasDeFichero();
