@@ -67,20 +67,17 @@ void imprimirFactura(Factura factura) {
     clean_stdin();
 }
 
-/*
 void archivarFacturas(Factura lista[100], int sizeFacturas) {
 
     FILE *archivo;
-    archivo = fopen("faturas.db", "w");
+    archivo = fopen("facturas.db", "w");
 
     if (archivo) {
         fwrite(lista, sizeof (Factura), sizeFacturas, archivo);
         fclose(archivo);
     }
 }
- */
 
-/*
 void cargarFacturasDeFichero() {
 
     FILE *archivo = fopen("facturas.db", "r");
@@ -98,4 +95,4 @@ void cargarFacturasDeFichero() {
         exit(1);
     }
     fclose(archivo);
-}*/
+}

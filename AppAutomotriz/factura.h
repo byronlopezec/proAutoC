@@ -24,8 +24,8 @@ extern Factura listaFacturas[100];
 void moduloFacturacion();
 float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle);
 
-//void archivarFacturas(Factura lista[100], int sizeFacturas);
-//void cargarFacturasDeFichero();
+void archivarFacturas(Factura lista[100], int sizeFacturas);
+void cargarFacturasDeFichero();
 
 #endif /* FACTURA_H */
 

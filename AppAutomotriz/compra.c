@@ -289,9 +289,7 @@ void finalizarCompra() {
             auxFactura.precioFinalPagar = calcularPrecioFinalDetalles(listaDetalles, contadorDetalle);
             strlcpy(auxFactura.fecha, getDate(), 20);
             listaFacturas[contadorFactura++] = auxFactura;
-/*
             archivarFacturas(listaFacturas, contadorFactura);
-*/
 
             // -- Limpiar Detalles
             memset(listaDetalles, 0, sizeof ( listaDetalles));
