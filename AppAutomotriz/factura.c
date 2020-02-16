@@ -14,8 +14,6 @@ void moduloFacturacion() {
     system("clear");
     imprimirTablaFacturas(listaFacturas, contadorFactura);
 
-
-    clean_stdin();
 }
 
 float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle) {
@@ -32,7 +30,7 @@ float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle) 
 
 void imprimirTablaFacturas(Factura listaFacturas[], int sizeListaFacturas) {
 
-    int opcionIdFactura = -1;
+    int opcionIdFactura = -2;
     do {
         system("clear");
         puts(" \t\t\t\t*** F A C T U R A S *** ");
