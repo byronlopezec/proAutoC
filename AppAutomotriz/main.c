@@ -14,6 +14,7 @@
 #include "auto.h"
 #include "shared.h"
 #include "compra.h"
+#include "fichero.h"
 
 char *menuModuloPrincipal[] = {
     "MODULO CLIENTE",
@@ -27,9 +28,7 @@ int main(void) {
     int opcionMenuPrincipal = -1;
     cargarClientesDeFichero();
     cargarAutosDeFichero();
-/*
     cargarFacturasDeFichero();
-*/
 
     do {
         system("clear");

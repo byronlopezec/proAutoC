@@ -11,6 +11,9 @@
 
 void moduloFacturacion() {
 
+    system("clear");
+    imprimirTablaFacturas(listaFacturas, contadorFactura);
+    clean_stdin();
 }
 
 float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle) {
@@ -28,11 +31,11 @@ float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle) 
 void imprimirTablaFacturas(Factura listaFacturas[], int sizeListaFacturas) {
 
     puts(" \t\t\t\t*** F A C T U R A S *** ");
-    puts("_______________________________________________________________________________");
-    printf("| %4s | %10s | %20s  | %10s |  %13s  | %10s \n", "ID_FACTURA", "C.I. CLIEN", "NOMBRE CLIENTE", "FECHA", "DETALLES T.", "TOTAL");
-    puts("===============================================================================");
+    puts("_______________________________________________________________________________________________");
+    printf("| %4s | %10s | %20s | %10s | %10s | %10s \n", "ID_FACTURA", "C.I. CLIEN", "NOMBRE CLIENTE", "      FECHA      ", "CANT. DET.", "TOTAL");
+    puts("===============================================================================================");
     for (int i = 0; i < sizeListaFacturas; i++) {
-        printf("|     %02d     | %10d | %20s | %10s | %02d | $ %.2f\n",
+        printf("|     %02d     | %10d | %20s | %17s |     %02d     | $ %.2f\n",
                 listaFacturas[i].id,
                 listaFacturas[i].cliente.cedula,
                 listaFacturas[i].cliente.nombres,

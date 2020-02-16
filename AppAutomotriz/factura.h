@@ -27,5 +27,7 @@ float calcularPrecioFinalDetalles(Detalle listaDetalles[], int contadorDetalle);
 void archivarFacturas(Factura lista[100], int sizeFacturas);
 void cargarFacturasDeFichero();
 
+void imprimirTablaFacturas(Factura listaFacturas[], int sizeListaFacturas);
+
 #endif /* FACTURA_H */
 
