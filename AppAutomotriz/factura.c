@@ -60,6 +60,7 @@ void imprimirTablaFacturas(Factura listaFacturas[], int sizeListaFacturas) {
         }
 
         printf("\n Factura con el ID: %d no existe!!", opcionIdFactura);
+        clean_stdin();
     } while (opcionIdFactura == -1);
 }
 

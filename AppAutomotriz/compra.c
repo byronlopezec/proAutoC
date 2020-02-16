@@ -41,9 +41,9 @@ const Producto listaProductos[9] = {
     {4, "Sistema electrico", 500.00},
     {5, "Embrague", 70.00},
     {6, "Transmision", 555.00},
-    {7, "Servicio Enderezado y Pintura", 1000.00},
-    {8, "Servicio Mecanica Correctiva", 500.00},
-    {9, "Servicio Alineacion", 300.00}
+    {7, "Enderezado Y Pintura", 1000.00},
+    {8, "Mecanica Correctiva", 500.00},
+    {9, "Alineacion", 300.00}
 };
 
 int contadorDetalle = 0;
@@ -206,6 +206,7 @@ void compraRepuestosServicios() {
         if (auxDetalle.idDetalle == opcionMenuRepuestosServicios) {
             auxlistaDetalles[contadorAuxDetatalles++] = auxDetalle;
             imprimirDetalle(auxlistaDetalles, contadorAuxDetatalles);
+            clean_stdin();
         }
     } while (opcionMenuRepuestosServicios != 11);
 }
@@ -235,7 +236,7 @@ int confirmarCompraProductos(Detalle details[], int sizeDetails) {
             puts("\nCompra Cancelada!...");
             break;
         }
-    } while (confirmar != 1 || confirmar != 0 || confirmar != 2);
+    } while (confirmar != 1 && confirmar != 0 && confirmar != 2);
 
     return confirmar;
 }
@@ -307,14 +308,14 @@ void finalizarCompra() {
         Cliente auxListClientes[1] = {clienteEncontrado};
         imprimirListaClientes(auxListClientes, 1);
 
-            printf("\n Asociar Cliente? (1 [SI],0 [Salir y Cancelar], cualquier tecla [modificar]): ");
-            fflush(stdin);
-            scanf("%d", &asociarCliente);
+        printf("\n Asociar Cliente? (1 [SI],0 [Salir y Cancelar], cualquier tecla [modificar]): ");
+        fflush(stdin);
+        scanf("%d", &asociarCliente);
 
-            if (asociarCliente == 0) {
-                puts("Asociacion Cliente Cancelado!... Regresando...");
-                clean_stdin();
-                break;
+        if (asociarCliente == 0) {
+            puts("Asociacion Cliente Cancelado!... Regresando...");
+            clean_stdin();
+            break;
         }
 
         if (asociarCliente == 1) {
