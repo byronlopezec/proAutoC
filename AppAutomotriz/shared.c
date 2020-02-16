@@ -36,7 +36,6 @@ int seleccionarOpcionMenu(char *menu[], int numeroOpcionesMenu) {
     for (int i = 0; i < numeroOpcionesMenu; i++) {
         printf("\n%d. %s", i + 1, menu[i]);
     }
-
     printf("\nSeleccione una opcion: ");
     fflush(stdin);
     scanf("%d", &opcionMenu);

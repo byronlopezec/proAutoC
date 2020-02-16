@@ -33,5 +33,6 @@ void imprimirFactura();
 Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios);
 void imprimirDetalle(Detalle details[], int sizeDetails);
 
+int confirmarCompraProductos(Detalle details[], int sizeDetails);
 #endif /* COMPRA_H */
 

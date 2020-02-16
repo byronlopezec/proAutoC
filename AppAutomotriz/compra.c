@@ -3,7 +3,6 @@
 #include "ctype.h"
 #include "string.h"
 
-
 #include "cliente.h"
 #include "shared.h"
 #include "compra.h"
@@ -30,6 +29,7 @@ char * menuRepuestosYServicios[] = {
     "Servicio Enderezado y Pintura $1000.00",
     "Servicio Mecanica Correctiva $500.00",
     "Servicio Alineacion $300.00",
+    "Confirmar compra",
     "Retroceder"
 };
 
@@ -164,7 +164,7 @@ void compraAuto() {
 
 }
 
-void imprimirDetalle( Detalle details[], int sizeDetails) {
+void imprimirDetalle(Detalle details[], int sizeDetails) {
     puts(" \t\t\t\t*** Detalles *** ");
     puts("_______________________________________________________________________________");
     printf("| %4s \t |%15s \t | %4s  | %8s \t | %8s\n", "ID_DETAIL", "NOMBRE", "CANT", "PRECIO_U", "SUB_TOTAL");
@@ -178,22 +178,66 @@ void imprimirDetalle( Detalle details[], int sizeDetails) {
 
 void compraRepuestosServicios() {
 
-    Detalle listaDetalles[10] = {0}; // inicializando a null;
+    Detalle auxlistaDetalles[10] = {0}; // inicializando a null;
+    int contadorAuxDetatalles = 0;
     int opcionMenuRepuestosServicios = -1;
     do {
-
+        clean_stdin_dontStop();
         system("clear");
         puts("\t\t\t ** Comprar Repuestos y Servicios **");
-        opcionMenuRepuestosServicios = seleccionarOpcionMenu(menuRepuestosYServicios, 10);
+        opcionMenuRepuestosServicios = seleccionarOpcionMenu(menuRepuestosYServicios, 11);
         Detalle auxDetalle = {0};
 
-        if (opcionMenuRepuestosServicios < 1 || 9 < opcionMenuRepuestosServicios) continue;
+        if (opcionMenuRepuestosServicios < 1 || 10 < opcionMenuRepuestosServicios) continue;
+
+        if (opcionMenuRepuestosServicios == 10) {
+            int opcionConfirmar = -1;
+            opcionConfirmar = confirmarCompraProductos(auxlistaDetalles, contadorAuxDetatalles);
+
+            if (opcionConfirmar == 1 || opcionConfirmar == 0) {
+                break;
+            }
+            if (opcionConfirmar == 2) continue;
+
+            break;
+        }
 
         auxDetalle = detalleDeCompraProducto(opcionMenuRepuestosServicios);
         if (auxDetalle.idDetalle == opcionMenuRepuestosServicios) {
-            listaDetalles[opcionMenuRepuestosServicios - 1] = auxDetalle;
+            auxlistaDetalles[contadorAuxDetatalles++] = auxDetalle;
+            imprimirDetalle(auxlistaDetalles, contadorAuxDetatalles);
         }
-    } while (opcionMenuRepuestosServicios != 10);
+    } while (opcionMenuRepuestosServicios != 11);
+}
+
+int confirmarCompraProductos(Detalle details[], int sizeDetails) {
+
+    int confirmar = -1; // 
+
+    do {
+        system("clear");
+        imprimirDetalle(details, sizeDetails);
+        printf("\n\nConfirmar Compra productos? 1 [SI], 0 [NO], 2 [Modificar]: ");
+        clean_stdin_dontStop();
+        scanf("%d", &confirmar);
+
+        if (confirmar == 1) {
+
+            for (int i = 0; i < sizeDetails; i++) {
+                listaDetalles[contadorDetalle++] = details[i];
+            }
+            puts("\nCompra registrada!...");
+            clean_stdin();
+            break;
+        }
+
+        if (confirmar == 0) {
+            puts("\nCompra Cancelada!...");
+            break;
+        }
+    } while (confirmar != 1 || confirmar != 0 || confirmar != 2);
+
+    return confirmar;
 }
 
 Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios) {
@@ -268,14 +312,14 @@ void finalizarCompra() {
         Cliente auxListClientes[1] = {clienteEncontrado};
         imprimirListaClientes(auxListClientes, 1);
 
-        printf("\n Asociar Cliente? (1 [SI],0 [Salir y Cancelar], cualquier tecla [modificar]): ");
-        fflush(stdin);
-        scanf("%d", &asociarCliente);
+            printf("\n Asociar Cliente? (1 [SI],0 [Salir y Cancelar], cualquier tecla [modificar]): ");
+            fflush(stdin);
+            scanf("%d", &asociarCliente);
 
-        if (asociarCliente == 0) {
-            puts("Asociacion Cliente Cancelado!... Regresando...");
-            clean_stdin();
-            break;
+            if (asociarCliente == 0) {
+                puts("Asociacion Cliente Cancelado!... Regresando...");
+                clean_stdin();
+                break;
         }
 
         if (asociarCliente == 1) {
