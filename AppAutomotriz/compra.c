@@ -265,14 +265,11 @@ Detalle detalleDeCompraProducto(int opcionMenuRepuestosServicios) {
 
     if (auxCantidad == 0) return auxDetalle;
 
-    printf("\n%s, Cantidad: %d, Total:  %.2f", temProducto.nombre, auxCantidad, temProducto.precio * auxCantidad);
-
     auxDetalle.idDetalle = opcionMenuRepuestosServicios;
     auxDetalle.producto = temProducto;
     auxDetalle.cantidad = auxCantidad;
     auxDetalle.precioTotal = temProducto.precio * auxCantidad;
 
-    printf("\nCodigo Detalle: %d, Producto: %s, Cantidad: %d, Total:  %.2f", auxDetalle.idDetalle, auxDetalle.producto.nombre, auxDetalle.cantidad, auxDetalle.precioTotal);
     clean_stdin();
 
     return auxDetalle;
