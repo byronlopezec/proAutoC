@@ -27,6 +27,9 @@ void moduloCliente();
 void modificarCliente();
 Cliente *eliminarCliente(int idCliente, Cliente *listaClientes, int sizeListaClientes);
 
+void eliminarDatosCliente(Cliente clientes[], int* contadorCliente, int idCliente);
+
+
 void cargarClientes();
 #endif /* CLIENTE_H */
 

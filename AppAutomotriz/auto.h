@@ -25,6 +25,7 @@ typedef struct Auto {
 extern Auto listaAutos[100];
 extern int contadorAuto;
 
+void eliminarDatosAuto(Auto autos[], int* contadorAuto, int idAuto);
 void modificarAuto();
 void moduloAuto();
 void imprimirListaAutos(Auto listaAutos[], int contadorAuto);

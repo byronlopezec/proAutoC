@@ -50,6 +50,7 @@ void moduloCliente() {
                 fflush(stdin);
                 scanf("%d", &opcionIDcliente);
                 eliminarDatosCliente(listaCliente, &contadorCliente, opcionIDcliente);
+                archivarClientes(listaCliente, contadorCliente);
                 clean_stdin();
                 break;
 

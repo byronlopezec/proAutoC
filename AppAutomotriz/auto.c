@@ -116,7 +116,16 @@ void moduloAuto() {
 
                 break;
             case 3:
-                printf("\t----- ELIMINAR VEHICULO------\n");
+                system("clear");
+                puts("\n\t\t\t ** ELIMINAR AUTO **");
+                int opcionIDauto = -1;
+                imprimirListaAutos(listaAutos, contadorAuto);
+                printf("\n Seleccione ID del auto: ");
+                fflush(stdin);
+                scanf("%d", &opcionIDauto);
+                eliminarDatosAuto(listaAutos, &contadorAuto, opcionIDauto);
+                archivarAutos(listaAutos, contadorAuto);
+                clean_stdin();
                 break;
             case 4:
 
@@ -125,6 +134,17 @@ void moduloAuto() {
                 break;
         }
     } while (opcionMenuAuto != 5);
+}
+
+void eliminarDatosAuto(Auto autos[], int* contadorAuto, int idAuto) {
+    for (int p = idAuto; p<*contadorAuto - 1; p++) {
+        autos[p] = autos[p + 1];
+        autos[p].marca = autos[p + 1].marca;
+        autos[p].tipo = autos[p + 1].tipo;
+        autos[p].color = autos[p + 1].color;
+        autos[p].precio = autos[p + 1].precio;
+    }
+    *contadorAuto = *contadorAuto - 1;
 }
 
 void modificarAuto() {
