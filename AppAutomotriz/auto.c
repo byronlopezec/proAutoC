@@ -60,14 +60,14 @@ void moduloAuto() {
 
                     switch (opcionMenuNuevoAuto) {
                         case 1:
-                            auxAuto.marca= seleccionarCaracteristicaAuto(marcasAuto, sizeMarcasAutos, "Marca");
+                            auxAuto.marca = seleccionarCaracteristicaAuto(marcasAuto, sizeMarcasAutos, "Marca");
                             break;
 
                         case 2:
-                            auxAuto.tipo=seleccionarCaracteristicaAuto(tiposAuto, sizeTiposAuto, "Tipo");
+                            auxAuto.tipo = seleccionarCaracteristicaAuto(tiposAuto, sizeTiposAuto, "Tipo");
                             break;
                         case 3:
-                            auxAuto.color= seleccionarCaracteristicaAuto(coloresAuto, sizeColoresAuto, "Color");
+                            auxAuto.color = seleccionarCaracteristicaAuto(coloresAuto, sizeColoresAuto, "Color");
                             break;
 
                         case 4:
@@ -111,7 +111,9 @@ void moduloAuto() {
                 break;
 
             case 2:
-                printf("\t----- MODIFICAR VEHICULO------\n");
+                printf("\n\t\t\t ** MODIFICAR AUTO **\n");
+                modificarAuto();
+
                 break;
             case 3:
                 printf("\t----- ELIMINAR VEHICULO------\n");
@@ -123,6 +125,47 @@ void moduloAuto() {
                 break;
         }
     } while (opcionMenuAuto != 5);
+}
+
+void modificarAuto() {
+
+    int opcionIDauto = -1;
+    Auto auxAuto = {0};
+
+    system("clear");
+    puts("\t\t\t *** MODIFICAR AUTO ***");
+    imprimirListaAutos(listaAutos, contadorAuto);
+    printf("\n Seleccione ID del auto: ");
+    clean_stdin_dontStop();
+    scanf("%d", &opcionIDauto);
+
+    auxAuto = buscarAutoPorID(opcionIDauto, listaAutos, contadorAuto);
+
+    if (auxAuto.marca != NULL) {
+
+        auxAuto.marca = seleccionarCaracteristicaAuto(marcasAuto, sizeMarcasAutos, "Marca");
+        auxAuto.tipo = seleccionarCaracteristicaAuto(tiposAuto, sizeTiposAuto, "Tipo");
+        auxAuto.color = seleccionarCaracteristicaAuto(coloresAuto, sizeColoresAuto, "Color");
+        system("clear");
+        puts("*** Precio Auto ***");
+        auxAuto.precio = calcularPrecioAuto(auxAuto);
+
+        printf("\n Modifcar auto %d ", opcionIDauto);
+        printf("\nMarca: %s", auxAuto.marca);
+        printf("\nTipo: %s", auxAuto.tipo);
+        printf("\nColor: %s", auxAuto.color);
+        printf("\nPrecio: $ %.2f \n______\n", auxAuto.precio);
+
+        for (int i = 0; i < contadorAuto; i++) {
+            if (auxAuto.id == listaAutos[i].id) {
+                listaAutos[i] = auxAuto;
+                archivarAutos(listaAutos, contadorAuto);
+                printf("\n Auto %d modificado exitosamente!!!", listaAutos[i].id);
+                clean_stdin();
+                break;
+            }
+        }
+    }
 }
 
 Auto buscarAutoPorID(int idAuto, Auto listaAutos[], int contadorAutos) {

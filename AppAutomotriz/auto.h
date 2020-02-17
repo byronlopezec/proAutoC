@@ -25,7 +25,7 @@ typedef struct Auto {
 extern Auto listaAutos[100];
 extern int contadorAuto;
 
-
+void modificarAuto();
 void moduloAuto();
 void imprimirListaAutos(Auto listaAutos[], int contadorAuto);
 char *seleccionarCaracteristicaAuto(char *listaCaracteristica[], int tamanioCaracteristicas, char *nombreCaracteristica);
