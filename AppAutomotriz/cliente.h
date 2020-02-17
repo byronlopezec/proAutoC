@@ -24,6 +24,7 @@ void imprimirListaClientes(Cliente listaClientes[], int sizeListaClientes);
 Cliente buscarClienteByID(Cliente listaClientes[], int sizeListaClientes, int idCliente);
 void moduloCliente();
 
+void modificarCliente();
 Cliente *eliminarCliente(int idCliente, Cliente *listaClientes, int sizeListaClientes);
 
 void cargarClientes();

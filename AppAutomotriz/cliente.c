@@ -25,7 +25,7 @@ void moduloCliente() {
 
     do {
         system("clear");
-        puts(" ---- CLIENTE ----");
+        puts("\t\t\t ** CLIENTE** ");
         opcionMenuCliente = seleccionarOpcionMenu(menuModuloCliente, 5);
 
         switch (opcionMenuCliente) {
@@ -38,6 +38,10 @@ void moduloCliente() {
                 puts("Registro Ingresado con exito!!!");
                 clean_stdin();
                 break;
+            case 2:
+                modificarCliente();
+                break;
+
             case 4:
                 system("clear");
                 imprimirListaClientes(listaCliente, contadorCliente);
@@ -45,6 +49,36 @@ void moduloCliente() {
                 break;
         }
     } while (opcionMenuCliente != 5);
+}
+
+void modificarCliente() {
+
+    int opcionIDcliente = -1;
+    Cliente auxCliente = {0};
+
+    system("clear");
+    puts("\t\t\t *** MODIFICAR CLIENTE ***");
+    imprimirListaClientes(listaCliente, contadorCliente);
+    printf("\n Seleccione ID del cliente: ");
+    fflush(stdin);
+    scanf("%d", &opcionIDcliente);
+
+    auxCliente = buscarClienteByID(listaCliente, contadorCliente, opcionIDcliente);
+
+    if (auxCliente.cedula != 0) {
+
+        auxCliente = NuevoCliente(opcionIDcliente);
+
+        for (int i = 0; i < contadorCliente; i++) {
+            if (auxCliente.id == listaCliente[i].id) {
+                listaCliente[i] = auxCliente;
+                archivarClientes(listaCliente, contadorCliente);
+                printf("\n Cliente %d modificado exitosamente!!!", listaCliente[i].id);
+                clean_stdin();
+                break;
+            }
+        }
+    }
 }
 
 void imprimirListaClientes(Cliente listaClientes[], int sizeListaClientes) {
@@ -80,7 +114,7 @@ Cliente NuevoCliente(int contCliAux) {
     int registrarCliente = NO;
 
     do {
-        printf("INGRESE LA INFORMACION DEL CLIENTE \n\n");
+        printf("INGRESE LA INFORMACION DEL CLIENTE %d\n\n", contCliAux);
         printf("CEDULA/RUC: ");
         clean_stdin_dontStop();
         scanf("%d", &cliAux.cedula);
