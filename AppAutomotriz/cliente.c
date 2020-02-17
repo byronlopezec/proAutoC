@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 #include "cliente.h"
 #include "shared.h"
@@ -41,6 +42,16 @@ void moduloCliente() {
             case 2:
                 modificarCliente();
                 break;
+            case 3:
+                system("clear");
+                int opcionIDcliente = -1;
+                imprimirListaClientes(listaCliente, contadorCliente);
+                printf("\n Seleccione ID del cliente: ");
+                fflush(stdin);
+                scanf("%d", &opcionIDcliente);
+                eliminarDatosCliente(listaCliente, &contadorCliente, opcionIDcliente);
+                clean_stdin();
+                break;
 
             case 4:
                 system("clear");
@@ -49,6 +60,18 @@ void moduloCliente() {
                 break;
         }
     } while (opcionMenuCliente != 5);
+}
+
+void eliminarDatosCliente(Cliente clientes[], int* contadorCliente, int idCliente) {
+    for (int p = idCliente; p<*contadorCliente - 1; p++) {
+        clientes[p] = clientes[p + 1];
+        strcpy(clientes[p].nombres, clientes[p + 1].nombres);
+        strcpy(clientes[p].direccion, clientes[p + 1].direccion);
+        strcpy(clientes[p].telefono, clientes[p + 1].telefono);
+        clientes[p].cedula = clientes[p + 1].cedula;
+
+    }
+    *contadorCliente = *contadorCliente - 1;
 }
 
 void modificarCliente() {
