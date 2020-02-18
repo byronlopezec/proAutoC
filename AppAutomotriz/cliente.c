@@ -32,8 +32,13 @@ void moduloCliente() {
         switch (opcionMenuCliente) {
             case 1:
                 system("clear");
-                Cliente auxCliente = NuevoCliente(contadorCliente);
+                Cliente auxCliente = {0};
+                if (contadorCliente == listaCliente[contadorCliente - 1].id) {
+                    auxCliente.id = contadorCliente + 1;
+                }
+                auxCliente = NuevoCliente(auxCliente.id);
                 if (auxCliente.cedula == 0) break;
+
                 listaCliente[contadorCliente++] = auxCliente;
                 archivarClientes(listaCliente, contadorCliente);
                 puts("Registro Ingresado con exito!!!");
