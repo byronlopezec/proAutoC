@@ -55,7 +55,7 @@ void moduloAuto() {
             case 1:
                 do {
                     system("clear");
-                    printf("-----NUEVO VEHICULO------");
+                    printf("-----NUEVO AUTO------");
                     opcionMenuNuevoAuto = seleccionarOpcionMenu(menuNuevoAuto, 5);
 
                     switch (opcionMenuNuevoAuto) {
@@ -90,7 +90,9 @@ void moduloAuto() {
                                     clean_stdin();
                                     break;
                                 }
-                                auxAuto.id = contadorAuto;
+                                int idUltimoAuto = listaAutos[contadorAuto - 1].id + 1;
+
+                                auxAuto.id = idUltimoAuto;
                                 listaAutos[contadorAuto++] = auxAuto;
                                 archivarAutos(listaAutos, contadorAuto);
                                 puts("\nRegistro exitoso!!!");
@@ -123,7 +125,9 @@ void moduloAuto() {
                 printf("\n Seleccione ID del auto: ");
                 fflush(stdin);
                 scanf("%d", &opcionIDauto);
-                eliminarDatosAuto(listaAutos, &contadorAuto, opcionIDauto);
+
+                int idAutoEncontrado = buscarAutoPorID(listaAutos, contadorAuto, opcionIDauto);
+                eliminarDatosAuto(listaAutos, &contadorAuto, idAutoEncontrado);
                 archivarAutos(listaAutos, contadorAuto);
                 clean_stdin();
                 break;
@@ -136,8 +140,8 @@ void moduloAuto() {
     } while (opcionMenuAuto != 5);
 }
 
-void eliminarDatosAuto(Auto autos[], int* contadorAuto, int idAuto) {
-    for (int p = idAuto; p<*contadorAuto - 1; p++) {
+void eliminarDatosAuto(Auto autos[], int* contadorAuto, int posiAuto) {
+    for (int p = posiAuto; p<*contadorAuto - 1; p++) {
         autos[p] = autos[p + 1];
         autos[p].marca = autos[p + 1].marca;
         autos[p].tipo = autos[p + 1].tipo;
@@ -159,7 +163,7 @@ void modificarAuto() {
     clean_stdin_dontStop();
     scanf("%d", &opcionIDauto);
 
-    auxAuto = buscarAutoPorID(opcionIDauto, listaAutos, contadorAuto);
+    auxAuto = buscarAutoByID(opcionIDauto, listaAutos, contadorAuto);
 
     if (auxAuto.marca != NULL) {
 
@@ -188,7 +192,15 @@ void modificarAuto() {
     }
 }
 
-Auto buscarAutoPorID(int idAuto, Auto listaAutos[], int contadorAutos) {
+int buscarAutoPorID(Auto listaAuto[], int contadorAuto, int idAuto) {
+    int posicion = 0;
+    while (posicion < contadorAuto && listaAuto[posicion].id != idAuto) {
+        posicion = posicion + 1;
+    }
+    return posicion < contadorAuto ? posicion : 1;
+}
+
+Auto buscarAutoByID(int idAuto, Auto listaAutos[], int contadorAutos) {
 
     Auto autoEncontrado = {0};
     for (int i = 0; i < contadorAutos; i++) {

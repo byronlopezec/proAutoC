@@ -31,8 +31,8 @@ void moduloAuto();
 void imprimirListaAutos(Auto listaAutos[], int contadorAuto);
 char *seleccionarCaracteristicaAuto(char *listaCaracteristica[], int tamanioCaracteristicas, char *nombreCaracteristica);
 float calcularPrecioAuto(Auto nuevoAuto);
-Auto buscarAutoPorID(int idAuto, Auto listaAutos[], int contadorAutos);
-
+Auto buscarAutoByID(int idAuto, Auto listaAutos[], int contadorAutos);
+int buscarAutoPorID(Auto listaAuto[], int contadorAuto, int idAuto);
 
 void archivarAutos(Auto lista[100], int sizeAutos);
 void cargarAutosDeFichero();

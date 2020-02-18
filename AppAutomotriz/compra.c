@@ -121,7 +121,7 @@ void compraAuto() {
 
         if (opcionId_auto == -1) break;
 
-        autoSeleccionado = buscarAutoPorID(opcionId_auto, listaAutos, contadorAuto);
+        autoSeleccionado = buscarAutoByID(opcionId_auto, listaAutos, contadorAuto);
 
         if (autoSeleccionado.id == 0 && autoSeleccionado.marca == NULL) {
             printf("\n Id_auto %d no encontrado!!!! -> Ingresar un ID entre [1-%d]", opcionId_auto, contadorAuto);
