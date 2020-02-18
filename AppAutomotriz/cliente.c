@@ -33,10 +33,10 @@ void moduloCliente() {
             case 1:
                 system("clear");
                 Cliente auxCliente = {0};
-                if (contadorCliente == listaCliente[contadorCliente - 1].id) {
-                    auxCliente.id = contadorCliente + 1;
-                }
-                auxCliente = NuevoCliente(auxCliente.id);
+
+                int idUltimoCliente = listaCliente[contadorCliente - 1].id + 1;
+
+                auxCliente = NuevoCliente(idUltimoCliente);
                 if (auxCliente.cedula == 0) break;
 
                 listaCliente[contadorCliente++] = auxCliente;
@@ -54,7 +54,9 @@ void moduloCliente() {
                 printf("\n Seleccione ID del cliente: ");
                 fflush(stdin);
                 scanf("%d", &opcionIDcliente);
-                eliminarDatosCliente(listaCliente, &contadorCliente, opcionIDcliente);
+
+                int posiClient = bucarClientePorID(listaCliente, contadorCliente, opcionIDcliente);
+                eliminarDatosCliente(listaCliente, &contadorCliente, posiClient);
                 archivarClientes(listaCliente, contadorCliente);
                 clean_stdin();
                 break;
@@ -122,6 +124,14 @@ void imprimirListaClientes(Cliente listaClientes[], int sizeListaClientes) {
                 listaClientes[i].cedula, listaClientes[i].telefono,
                 listaClientes[i].direccion);
     }
+}
+
+int bucarClientePorID(Cliente listaClientes[], int contadorCliente, int idCliente) {
+    int posicion = 0;
+    while (posicion < contadorCliente && listaClientes[posicion].id != idCliente) {
+        posicion = posicion + 1;
+    }
+    return posicion < contadorCliente ? posicion : 1;
 }
 
 Cliente buscarClienteByID(Cliente listaClientes[], int sizeListaClientes, int idCliente) {
