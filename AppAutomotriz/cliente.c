@@ -28,21 +28,33 @@ void moduloCliente() {
         system("clear");
         puts("\t\t\t ** CLIENTE** ");
         opcionMenuCliente = seleccionarOpcionMenu(menuModuloCliente, 5);
+        int opcionNewClient = -1;
 
         switch (opcionMenuCliente) {
             case 1:
-                system("clear");
-                Cliente auxCliente = {0};
+                puts("\t\t\t *** REGISTRAR CLIENTE ***");
 
-                int idUltimoCliente = listaCliente[contadorCliente - 1].id + 1;
+                do {
+                    system("clear");
+                    printf("\n Agregar nuevo cliente?, 1 [SI], 0 [NO]: ");
+                    fflush(stdin);
+                    scanf("%d", &opcionNewClient);
 
-                auxCliente = NuevoCliente(idUltimoCliente);
-                if (auxCliente.cedula == 0) break;
+                    if (opcionNewClient == 0) break;
+                    if (opcionNewClient != 1) continue;
 
-                listaCliente[contadorCliente++] = auxCliente;
-                archivarClientes(listaCliente, contadorCliente);
-                puts("Registro Ingresado con exito!!!");
-                clean_stdin();
+                    Cliente auxCliente = {0};
+
+                    int idUltimoCliente = listaCliente[contadorCliente - 1].id + 1;
+
+                    auxCliente = NuevoCliente(idUltimoCliente);
+                    if (auxCliente.cedula == 0) break;
+
+                    listaCliente[contadorCliente++] = auxCliente;
+                    archivarClientes(listaCliente, contadorCliente);
+                    puts("Registro Ingresado con exito!!!");
+                    clean_stdin();
+                } while (opcionNewClient != 1);
                 break;
             case 2:
                 modificarCliente();
@@ -55,7 +67,16 @@ void moduloCliente() {
                 fflush(stdin);
                 scanf("%d", &opcionIDcliente);
 
+                Cliente auxClienteBuscado = buscarClienteByID(listaCliente, contadorCliente, opcionIDcliente);
+                if (auxClienteBuscado.cedula == 0) {
+                    printf("\n Cliente %d no registrado", opcionIDcliente);
+                    clean_stdin();
+                    break;
+                }
+
                 int posiClient = bucarClientePorID(listaCliente, contadorCliente, opcionIDcliente);
+                printf("\n Eliminar cliente posiCliente: %d con idCliente: %d", posiClient, opcionIDcliente);
+                clean_stdin();
                 eliminarDatosCliente(listaCliente, &contadorCliente, posiClient);
                 archivarClientes(listaCliente, contadorCliente);
                 clean_stdin();

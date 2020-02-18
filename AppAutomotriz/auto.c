@@ -126,6 +126,14 @@ void moduloAuto() {
                 fflush(stdin);
                 scanf("%d", &opcionIDauto);
 
+                Auto auxAutoBuscado = buscarAutoByID(opcionIDauto, listaAutos, contadorAuto);
+
+                if (auxAutoBuscado.marca == NULL) {
+                    printf("\n Auto %d no registrado", opcionIDauto);
+                    clean_stdin();
+                    break;
+                }
+
                 int idAutoEncontrado = buscarAutoPorID(listaAutos, contadorAuto, opcionIDauto);
                 eliminarDatosAuto(listaAutos, &contadorAuto, idAutoEncontrado);
                 archivarAutos(listaAutos, contadorAuto);
