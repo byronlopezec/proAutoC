@@ -5,6 +5,8 @@
  * Created on February 9, 2020, 11:34 AM
  */
 
+#include "compra.h"
+
 #ifndef FACTURA_H
 #define FACTURA_H
 

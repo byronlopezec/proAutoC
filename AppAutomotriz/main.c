@@ -10,10 +10,11 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "shared.h"
 #include "cliente.h"
 #include "auto.h"
-#include "shared.h"
 #include "compra.h"
+#include "factura.h"
 #include "fichero.h"
 
 char *menuModuloPrincipal[] = {
